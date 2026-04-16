@@ -1,2 +1,0 @@
-# Thankyoupagewebinar
-pasos a completar
