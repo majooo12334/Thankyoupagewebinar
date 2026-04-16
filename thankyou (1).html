@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Gracias! — Entrelingo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-dark:    #0F4E54;
+      --teal-mid:     #5B8C8A;
+      --teal-light:   #C4D8D8;
+      --slate:        #3D5C5E;
+      --bg:           #E8F0F0;
+      --surface:      #FFFFFF;
+      --text-body:    #3D5C5E;
+      --text-muted:   #7A9EA0;
+      --gold:         #C9962A;
+      --gold-bg:      #FDF4E3;
+    }
+
+    html, body {
+      font-family: 'Raleway', sans-serif;
+      background: var(--bg);
+      color: var(--text-body);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: -140px; right: -140px;
+      width: 520px; height: 520px;
+      border-radius: 50%;
+      background: var(--teal-light);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -100px; left: -100px;
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      background: var(--teal-mid);
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .wrapper {
+      max-width: 560px;
+      width: 100%;
+      animation: rise 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* TOP CARD */
+    .top-card {
+      background: var(--surface);
+      border-radius: 24px 24px 0 0;
+      padding: 2.75rem 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .top-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--teal-dark), var(--teal-mid));
+    }
+
+    .check-wrap {
+      width: 68px; height: 68px;
+      border-radius: 50%;
+      background: var(--teal-dark);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 0 0 10px rgba(15,78,84,0.08);
+    }
+    .check-wrap svg {
+      width: 30px; height: 30px;
+      stroke: #fff; stroke-width: 2.8;
+      fill: none; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    .title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--teal-dark);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+    .subtitle {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--slate);
+      margin-top: 0.45rem;
+    }
+    .incomplete {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 0.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ALERT BAND */
+    .alert-band {
+      background: var(--gold-bg);
+      border-left: 4px solid var(--gold);
+      border-right: 4px solid var(--gold);
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .alert-band svg {
+      width: 22px; height: 22px; min-width: 22px;
+      stroke: var(--gold); stroke-width: 2;
+      fill: none; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .alert-band p {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #7A5000;
+      line-height: 1.4;
+    }
+
+    /* STEPS AREA */
+    .steps-area {
+      background: var(--surface);
+      border-radius: 0 0 24px 24px;
+      padding: 0 2rem 2.5rem;
+    }
+
+    .steps-label {
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      padding-top: 1.75rem;
+      margin-bottom: 1.1rem;
+    }
+
+    /* Step cards */
+    .step {
+      display: flex;
+      align-items: stretch;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+      box-shadow: 0 4px 20px rgba(15,78,84,0.11);
+    }
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(15,78,84,0.2);
+      border-color: var(--teal-mid);
+    }
+    .step:active { transform: translateY(-1px); }
+
+    .step-accent {
+      width: 6px;
+      min-width: 6px;
+      background: var(--teal-dark);
+    }
+
+    .step-inner {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 1.3rem 1.35rem;
+      background: #F2F8F8;
+    }
+
+    .step-num {
+      width: 42px; height: 42px; min-width: 42px;
+      border-radius: 50%;
+      background: var(--teal-dark);
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-body { flex: 1; }
+
+    .step-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--teal-mid);
+      margin-bottom: 4px;
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--teal-dark);
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .step-desc {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .step-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: var(--teal-dark);
+      color: #fff;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0 1.25rem;
+      min-width: 78px;
+      border-left: 1px solid rgba(255,255,255,0.12);
+      transition: background 0.15s;
+    }
+    .step:hover .step-cta { background: var(--slate); }
+    .step-cta svg {
+      width: 17px; height: 17px;
+      stroke: #fff; stroke-width: 2.4;
+      fill: none; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* FOOTER */
+    .footer-note {
+      text-align: center;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+    }
+    .footer-note a {
+      color: var(--teal-mid);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .footer-note a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="top-card">
+      <div class="check-wrap">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h1 class="title">¡Gracias!</h1>
+      <p class="subtitle">Tu registro fue enviado</p>
+      <span class="incomplete">Pero aún no está completo</span>
+    </div>
+
+    <div class="alert-band">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="12" y1="8" x2="12" y2="12"/>
+        <line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <p>Sin estos pasos no recibirás el acceso ni el regalo</p>
+    </div>
+
+    <div class="steps-area">
+      <p class="steps-label">Completa ahora — 2 pasos</p>
+
+      <a class="step" href="https://www.addevent.com/event/v8tn4154wgc9" target="_blank" rel="noopener">
+        <div class="step-accent"></div>
+        <div class="step-inner">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <span class="step-tag">Paso 1 de 2</span>
+            <p class="step-title">Guarda el evento en tu calendario</p>
+            <p class="step-desc">Para que no se te pase la fecha del webinar</p>
+          </div>
+        </div>
+        <div class="step-cta">
+          Guardar
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+      <a class="step" href="https://chat.whatsapp.com/FPWlOqPQROq5xCWxRWoUin" target="_blank" rel="noopener">
+        <div class="step-accent"></div>
+        <div class="step-inner">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <span class="step-tag">Paso 2 de 2</span>
+            <p class="step-title">Únete al grupo de WhatsApp</p>
+            <p class="step-desc">Recibe el acceso y el regalo en el grupo</p>
+          </div>
+        </div>
+        <div class="step-cta">
+          Unirse
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </a>
+
+    </div>
+
+    <p class="footer-note">
+      <a href="https://www.entrelingo.com/webinar" target="_blank">entrelingo.com/webinar</a>
+    </p>
+
+  </div>
+
+</body>
+</html>
